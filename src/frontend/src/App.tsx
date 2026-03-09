@@ -6,6 +6,7 @@ import {
   Clock,
   ExternalLink,
   Home,
+  Images,
   IndianRupee,
   Key,
   Lock,
@@ -36,30 +37,35 @@ const services = [
     title: "Key Duplication",
     description:
       "Precision duplicates for all types of keys — home, office, padlock, and more. Quick turnaround at your doorstep.",
+    image: "/assets/generated/service-key-duplication.dim_600x400.jpg",
   },
   {
     icon: Home,
     title: "Home Lockout Assistance",
     description:
       "Locked out of your house? Our team arrives fast to get you back inside safely, without damaging your locks.",
+    image: "/assets/generated/service-home-lockout.dim_600x400.jpg",
   },
   {
     icon: Car,
     title: "Car Key Duplication",
     description:
       "Duplicate or replace car keys including transponder keys and remote fobs for most major vehicle brands.",
+    image: "/assets/generated/service-car-key.dim_600x400.jpg",
   },
   {
     icon: Lock,
     title: "Lock Installation",
     description:
       "Professional installation of high-security locks for homes, offices, and vehicles. Top brands available.",
+    image: "/assets/generated/service-lock-install.dim_600x400.jpg",
   },
   {
     icon: Wrench,
     title: "Lock Repair",
     description:
       "Broken or stiff lock? We diagnose and repair all types of locks quickly to restore your security and peace of mind.",
+    image: "/assets/generated/service-lock-repair.dim_600x400.jpg",
   },
 ];
 
@@ -96,6 +102,33 @@ const features = [
   },
 ];
 
+const galleryItems = [
+  {
+    src: "/assets/generated/gallery-keys-collection.dim_600x400.jpg",
+    label: "Keys Collection",
+  },
+  {
+    src: "/assets/generated/gallery-workshop.dim_600x400.jpg",
+    label: "Our Workshop",
+  },
+  {
+    src: "/assets/generated/gallery-happy-customer.dim_600x400.jpg",
+    label: "Happy Customers",
+  },
+  {
+    src: "/assets/generated/gallery-locks.dim_600x400.jpg",
+    label: "Premium Locks",
+  },
+  {
+    src: "/assets/generated/service-key-duplication.dim_600x400.jpg",
+    label: "Key Duplication",
+  },
+  {
+    src: "/assets/generated/service-lock-install.dim_600x400.jpg",
+    label: "Lock Installation",
+  },
+];
+
 function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -108,6 +141,7 @@ function NavBar() {
 
   const navLinks = [
     { label: "Services", href: "#services" },
+    { label: "Gallery", href: "#gallery" },
     { label: "Why Us", href: "#why-us" },
     { label: "Contact", href: "#contact" },
   ];
@@ -229,12 +263,13 @@ function HeroSection() {
       {/* Background image with overlay */}
       <div className="absolute inset-0">
         <img
-          src="/assets/generated/banner-exterior-day.dim_1400x600.jpg"
+          src="/assets/generated/hero-bg.dim_1400x700.jpg"
           alt=""
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-background/75" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-transparent to-background" />
+        {/* Dark navy overlay matching the theme */}
+        <div className="absolute inset-0 bg-[oklch(13%_0.04_250)]/35" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[oklch(13%_0.04_250)]/20 via-transparent to-[oklch(13%_0.04_250)]" />
       </div>
 
       {/* Decorative gold line */}
@@ -381,25 +416,96 @@ function ServicesSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: i * 0.08 }}
                 data-ocid={`services.item.${i + 1}`}
-                className="group relative bg-card rounded-xl p-6 border border-border card-lift overflow-hidden"
+                className="group relative bg-card rounded-xl border border-border card-lift overflow-hidden"
               >
-                {/* Gold left accent */}
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/80 via-primary to-primary/20 rounded-l-xl" />
-
-                {/* Icon */}
-                <div className="w-12 h-12 rounded-lg bg-primary/15 flex items-center justify-center mb-4 group-hover:bg-primary/25 transition-colors">
-                  <Icon className="w-6 h-6 text-primary" />
+                {/* Service image */}
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
+                  {/* Gold left accent */}
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/80 via-primary to-primary/20" />
+                  {/* Icon badge */}
+                  <div className="absolute bottom-3 left-4 w-10 h-10 rounded-lg bg-primary/90 flex items-center justify-center shadow-gold">
+                    <Icon className="w-5 h-5 text-primary-foreground" />
+                  </div>
                 </div>
 
-                <h3 className="font-display font-bold text-lg text-foreground mb-2">
-                  {service.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {service.description}
-                </p>
+                <div className="p-5">
+                  <h3 className="font-display font-bold text-lg text-foreground mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
               </motion.div>
             );
           })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function GallerySection() {
+  return (
+    <section
+      id="gallery"
+      className="py-20 md:py-28 px-4 sm:px-6 bg-secondary relative overflow-hidden"
+    >
+      <div className="max-w-6xl mx-auto">
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-14"
+        >
+          <Badge className="mb-4 bg-primary/15 text-primary border-primary/30 px-3 py-1">
+            <Images className="w-3.5 h-3.5 mr-1.5 inline" />
+            Our Work
+          </Badge>
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-foreground mb-4">
+            Gallery
+          </h2>
+          <p className="text-muted-foreground text-base sm:text-lg max-w-lg mx-auto">
+            A glimpse into our work — from key duplication to lock installations
+            across Ghaziabad.
+          </p>
+        </motion.div>
+
+        {/* Gallery grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {galleryItems.map((item, i) => (
+            <motion.div
+              key={item.src}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.07 }}
+              data-ocid={`gallery.item.${i + 1}`}
+              className="group relative rounded-xl overflow-hidden border border-border aspect-[3/2] cursor-pointer"
+            >
+              <img
+                src={item.src}
+                alt={item.label}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-108"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[oklch(13%_0.04_250)]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <span className="text-sm font-semibold text-primary">
+                  {item.label}
+                </span>
+              </div>
+              {/* Gold corner accent */}
+              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/50 rounded-tl-xl" />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
@@ -410,7 +516,7 @@ function WhyUsSection() {
   return (
     <section
       id="why-us"
-      className="py-20 md:py-28 px-4 sm:px-6 bg-secondary relative overflow-hidden"
+      className="py-20 md:py-28 px-4 sm:px-6 bg-background relative overflow-hidden"
     >
       {/* Background pattern */}
       <div
@@ -499,7 +605,7 @@ function WhyUsSection() {
 
 function ContactSection() {
   return (
-    <section id="contact" className="py-20 md:py-28 px-4 sm:px-6 bg-background">
+    <section id="contact" className="py-20 md:py-28 px-4 sm:px-6 bg-secondary">
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
         <motion.div
@@ -731,7 +837,7 @@ function Footer() {
               </span>
             </div>
             <div className="flex flex-col gap-1.5">
-              {["Services", "Why Us", "Contact"].map((label) => (
+              {["Services", "Gallery", "Why Us", "Contact"].map((label) => (
                 <a
                   key={label}
                   href={`#${label.toLowerCase().replace(" ", "-")}`}
@@ -771,6 +877,7 @@ export default function App() {
       <main>
         <HeroSection />
         <ServicesSection />
+        <GallerySection />
         <WhyUsSection />
         <ContactSection />
       </main>
