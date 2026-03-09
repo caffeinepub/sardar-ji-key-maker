@@ -1,0 +1,103 @@
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("/assets/fonts/BricolageGrotesque[opsz,wdth,wght].woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Mona Sans";
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url("/assets/fonts/Mona-Sans.woff2") format("woff2");
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 18% 0.04 250;
+    --foreground: 96% 0.01 250;
+    --primary: 75% 0.18 75;
+    --primary-foreground: 15% 0.03 250;
+    --secondary: 25% 0.06 250;
+    --secondary-foreground: 90% 0.01 250;
+    --muted: 28% 0.05 250;
+    --muted-foreground: 65% 0.04 250;
+    --accent: 75% 0.18 75;
+    --accent-foreground: 15% 0.03 250;
+    --popover: 20% 0.05 250;
+    --popover-foreground: 96% 0.01 250;
+    --card: 22% 0.05 250;
+    --card-foreground: 95% 0.01 250;
+    --border: 30% 0.06 250;
+    --input: 25% 0.05 250;
+    --ring: 75% 0.18 75;
+    --destructive: 55% 0.22 25;
+    --destructive-foreground: 97% 0.01 250;
+    --radius: 0.625rem;
+    --chart-1: 75% 0.18 75;
+    --chart-2: 65% 0.15 200;
+    --chart-3: 55% 0.2 145;
+    --chart-4: 70% 0.12 300;
+    --chart-5: 80% 0.1 50;
+    --sidebar: 15% 0.04 250;
+    --sidebar-foreground: 96% 0.01 250;
+    --sidebar-primary: 75% 0.18 75;
+    --sidebar-primary-foreground: 15% 0.03 250;
+    --sidebar-accent: 25% 0.06 250;
+    --sidebar-accent-foreground: 90% 0.01 250;
+    --sidebar-border: 30% 0.06 250;
+    --sidebar-ring: 75% 0.18 75;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: oklch(var(--background));
+    color: oklch(var(--foreground));
+    font-family: "Mona Sans", sans-serif;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    border-color: oklch(var(--border));
+    box-sizing: border-box;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gold-glow {
+    box-shadow: 0 0 20px oklch(75% 0.18 75 / 0.3), 0 4px 16px
+      oklch(0% 0 0 / 0.4);
+  }
+
+  .gold-glow-hover:hover {
+    box-shadow: 0 0 30px oklch(75% 0.18 75 / 0.45), 0 8px 24px
+      oklch(0% 0 0 / 0.5);
+  }
+
+  .card-lift {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .card-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px oklch(0% 0 0 / 0.5), 0 0 20px
+      oklch(75% 0.18 75 / 0.15);
+  }
+}
