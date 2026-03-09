@@ -229,7 +229,7 @@ function HeroSection() {
       {/* Background image with overlay */}
       <div className="absolute inset-0">
         <img
-          src="/assets/generated/hero-bg.dim_1400x700.jpg"
+          src="/assets/generated/banner-exterior-day.dim_1400x600.jpg"
           alt=""
           className="w-full h-full object-cover"
         />
